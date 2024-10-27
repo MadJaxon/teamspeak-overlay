@@ -1,5 +1,3 @@
-import json
-
 from TSOverlayUI import TSOverlayUI
 from wrapper.TSApiWrapper import TSApiWrapper
 from wrapper.TSChannel import TSChannel

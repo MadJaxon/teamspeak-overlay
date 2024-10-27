@@ -1,7 +1,3 @@
-from collections import defaultdict
-import json
-import websocket
-
 class TSApiConfig:
     def __init__(self, config=None):
         self.config = {

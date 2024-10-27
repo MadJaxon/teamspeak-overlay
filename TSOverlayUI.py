@@ -1,7 +1,5 @@
 # import ctypes
 import tkinter as tk
-from PIL import Image, ImageTk
-from PyQt5.sip import delete
 
 from wrapper.TSClient import TSClient
 

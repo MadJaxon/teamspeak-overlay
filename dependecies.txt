@@ -1,0 +1,7 @@
+threading
+tkinter
+os
+collections
+json
+datetime
+websocket-client

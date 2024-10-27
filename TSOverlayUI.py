@@ -1,4 +1,4 @@
-import ctypes
+# import ctypes
 import tkinter as tk
 from PIL import Image, ImageTk
 from PyQt5.sip import delete
@@ -29,27 +29,27 @@ class TSOverlayUI:
         # Dictionary to hold labels for each name
         self.labels = {}
 
-    def make_click_through(self):
-        hwnd = ctypes.windll.user32.GetForegroundWindow()
-        if hwnd != self.root.winfo_id():
-            ctypes.windll.user32.SetForegroundWindow(self.root.winfo_id())
-
-        # Get system metrics for layered windows
-        LWA_COLORKEY = 0x00000001
-        LWA_ALPHA = 0x00000002
-        GWL_EXSTYLE = -20
-        WS_EX_LAYERED = 0x00080000
-        WS_EX_TRANSPARENT = 0x00000020
-
-        # Set layered style
-        ctypes.windll.user32.SetWindowLongW(
-            self.root.winfo_id(),
-            GWL_EXSTYLE,
-            ctypes.windll.user32.GetWindowLongW(self.root.winfo_id(),GWL_EXSTYLE) | WS_EX_LAYERED | WS_EX_TRANSPARENT
-        )
-
-        # Set window to be transparent to mouse and keyboard events
-        ctypes.windll.user32.SetLayeredWindowAttributes(self.root.winfo_id(), 0, 255, LWA_ALPHA)
+    # def make_click_through(self):
+    #     hwnd = ctypes.windll.user32.GetForegroundWindow()
+    #     if hwnd != self.root.winfo_id():
+    #         ctypes.windll.user32.SetForegroundWindow(self.root.winfo_id())
+    #
+    #     # Get system metrics for layered windows
+    #     LWA_COLORKEY = 0x00000001
+    #     LWA_ALPHA = 0x00000002
+    #     GWL_EXSTYLE = -20
+    #     WS_EX_LAYERED = 0x00080000
+    #     WS_EX_TRANSPARENT = 0x00000020
+    #
+    #     # Set layered style
+    #     ctypes.windll.user32.SetWindowLongW(
+    #         self.root.winfo_id(),
+    #         GWL_EXSTYLE,
+    #         ctypes.windll.user32.GetWindowLongW(self.root.winfo_id(),GWL_EXSTYLE) | WS_EX_LAYERED | WS_EX_TRANSPARENT
+    #     )
+    #
+    #     # Set window to be transparent to mouse and keyboard events
+    #     ctypes.windll.user32.SetLayeredWindowAttributes(self.root.winfo_id(), 0, 255, LWA_ALPHA)
 
     def clear_clients(self):
         keyLabels = self.labels.keys()

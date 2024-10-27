@@ -97,6 +97,10 @@ class TSOverlay:
         if payload['socketEvent'].args[0].find("dictionary changed size during iteration") == -1:
             print("apiError")
             print(payload)
+        if payload['socketEvent'].args[0].find("KeyboardInterrupt") == -1:
+            exit()
+        if payload['socketEvent'].args[0].find("main thread is not in main loop") == -1:
+            exit()
         pass
     def apiReady(self, payload):
         print("apiReady")
@@ -198,6 +202,8 @@ class TSOverlay:
                     "clients": talkingClients
                 })
         # self.ui.update_status(talkingConnections)
+        if len(talkingConnections) == 0:    #cleanup leftovers
+            self.ui.clear_clients()
 
 
     def clientMoved(self, payload):

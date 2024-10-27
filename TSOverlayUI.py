@@ -51,6 +51,13 @@ class TSOverlayUI:
         # Set window to be transparent to mouse and keyboard events
         ctypes.windll.user32.SetLayeredWindowAttributes(self.root.winfo_id(), 0, 255, LWA_ALPHA)
 
+    def clear_clients(self):
+        keyLabels = self.labels.keys()
+        for label in keyLabels:
+            self.labels[label].destroy()
+            del self.labels[label]
+        self.updateSize()
+
     def add_client(self, client: TSClient):
         background = "#A0A0A0"
         if client.commander:

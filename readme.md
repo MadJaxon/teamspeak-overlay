@@ -6,6 +6,7 @@ using a python conversion of https://github.com/ezrarieben/ts5-remote-apps-wrapp
 
 # installation
 pip install tk
+
 pip install websocket-client
 
 

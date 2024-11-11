@@ -1,0 +1,6 @@
+api_key.txt
+.venv/
+.idea/
+test.py
+compile/
+compile.bat

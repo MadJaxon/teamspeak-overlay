@@ -103,6 +103,7 @@ class TSApiConnection:
                 }
             }
         }
+        print("Waiting on authorization from Teamspeak")
         self.ws.send(json.dumps(payload))
         self.auth_request_sent = True
 

@@ -8,10 +8,10 @@ class TSApiConfig:
                 'tsEventDebug': False
             },
             'app': {
-                'name': "TS Remote Apps Wrapper",
-                'identifier': "ts5-remote-apps-wrapper",
+                'name': "TS Overlay",
+                'identifier': "ts5-overlayy",
                 'version': "1.0.0",
-                'description': "An API wrapper for TeamSpeak 5's remote apps WebSocket feature.",
+                'description': "An TeamSpeak 5 compatible barebones overlay",
             }
         }
         if config:

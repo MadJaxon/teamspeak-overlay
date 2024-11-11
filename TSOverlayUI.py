@@ -87,8 +87,6 @@ class TSOverlayUI:
             self.labels[key].destroy()
             del self.labels[key]
             self.updateSize()
-        # else:
-        #     print(client.name + " missing")
 
     def updateSize(self):
         # Update window size to fit content

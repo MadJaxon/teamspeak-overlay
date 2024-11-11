@@ -6,10 +6,12 @@ from wrapper.TSConnection import TSConnection
 
 
 class TSOverlay:
-    ui: TSOverlayUI
-    connections = []
-    channels = []
-    clients = []
+    def __init__(self):
+        self.ui: TSOverlayUI = None
+        self.connections = []
+        self.channels = []
+        self.clients = []
+
     def start(self, ui):
         self.ui: TSOverlayUI = ui
         connection = TSApiWrapper(None)
@@ -21,7 +23,8 @@ class TSOverlay:
         connection.on("clientChannelGroupChanged", self.clientChannelGroupChanged)
         connection.on("talkStatusChanged", self.talkStatusChanged)
         connection.on("clientMoved", self.clientMoved)
-        connection.on("textMessage", self.textMessage)
+        connection.on("textMessage", self.dummy)
+        connection.on("log", self.dummy)
         connection.connect()
         connection.run_forever()
 
@@ -70,7 +73,7 @@ class TSOverlay:
 
         if "flagTalking" in properties:
             client.talking = properties["flagTalking"]
-        if "inputMuted" in properties:
+        if "flagTalking" in properties:
             client.talking = properties["flagTalking"] or (("isTalker" in properties) and properties["isTalker"])
 
         # todo: whispering
@@ -133,7 +136,11 @@ class TSOverlay:
             #     self.parseChannelProperties(channelInfo['id'], connectionInfo['id'], channelInfo['properties'])
 
             for clientInfo in connectionInfo['clientInfos']:
-                self.parseClientProperties(clientInfo['id'], clientInfo['properties'], connectionInfo['id'])
+                if "properties" in clientInfo:
+                    self.parseClientProperties(clientInfo['id'], clientInfo['properties'], connectionInfo['id'])
+                else:
+                    print("no properties")
+                    print(clientInfo)
         #print(payload)
         self.updatedClients()
         pass
@@ -156,7 +163,11 @@ class TSOverlay:
         pass
 
     def clientPropertiesUpdated(self, payload):
-        self.parseClientProperties(payload["clientId"], payload["properties"], payload["connectionId"])
+        if "properties" in payload:
+            self.parseClientProperties(payload["clientId"], payload["properties"], payload["connectionId"])
+        else:
+            print("no properties")
+            print(payload)
         pass
 
     def clientChannelGroupChanged(self, payload):
@@ -205,7 +216,8 @@ class TSOverlay:
 
 
     def clientMoved(self, payload):
-        pass
+        if "properties" in payload:
+            self.parseClientProperties(payload["clientId"], payload["properties"], payload["connectionId"])
 
-    def textMessage(self, payload):
+    def dummy(self, payload):
         pass

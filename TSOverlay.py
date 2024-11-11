@@ -138,10 +138,6 @@ class TSOverlay:
             for clientInfo in connectionInfo['clientInfos']:
                 if "properties" in clientInfo:
                     self.parseClientProperties(clientInfo['id'], clientInfo['properties'], connectionInfo['id'])
-                else:
-                    print("no properties")
-                    print(clientInfo)
-        #print(payload)
         self.updatedClients()
         pass
 
@@ -165,10 +161,6 @@ class TSOverlay:
     def clientPropertiesUpdated(self, payload):
         if "properties" in payload:
             self.parseClientProperties(payload["clientId"], payload["properties"], payload["connectionId"])
-        else:
-            print("no properties")
-            print(payload)
-        pass
 
     def clientChannelGroupChanged(self, payload):
         pass
